@@ -1,9 +1,9 @@
 #ifndef LOCAL_DISC_NAME_API_H
 #define LOCAL_DISC_NAME_API_H
 
-// Define YOUR_CORE_LIB_API for exporting/importing symbols
+// Define LOCAL_DISC_LIB_API for exporting/importing symbols
 #ifdef _WIN32
-    #ifdef YOUR_CORE_LIB_EXPORTS // This is defined by CMake when building the DLL
+    #ifdef LOCAL_DISC_LIB_EXPORTS // This is defined by CMake when building the DLL
         #define LOCAL_DISC_LIB_API __declspec(dllexport)
     #else
         #define LOCAL_DISC_LIB_API __declspec(dllimport) // For consumers (less relevant for FFI loading)

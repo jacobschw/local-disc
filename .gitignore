@@ -1,3 +1,8 @@
+# data dumps
+.datadump/
+
+build/
+
 # Prerequisites
 *.d
 
@@ -31,6 +36,4 @@
 *.out
 *.app
 
-# data dumps
-.datadump/
 

@@ -80,13 +80,13 @@ install(EXPORT LocalDiscTargets
   FILE
     LocalDiscTargets.cmake
   NAMESPACE
-    YourProjectName::
+    LocalDisc::
   DESTINATION
-    lib/cmake/YourProjectName
+    lib/cmake/LocalDisc
 )
 
 # Generate a config file for CMake (LocalDiscConfig.cmake)
-# This helps other CMake projects find your library using find_package(YourProjectName)
+# This helps other CMake projects find your library using find_package(LocalDisc)
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/LocalDiscConfigVersion.cmake"
@@ -96,12 +96,12 @@ write_basic_package_version_file(
 configure_package_config_file(
   "Config.cmake.in" # You'll create this file
   "${CMAKE_CURRENT_BINARY_DIR}/LocalDiscConfig.cmake"
-  INSTALL_DESTINATION lib/cmake/YourProjectName
+  INSTALL_DESTINATION lib/cmake/LocalDisc
 )
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/LocalDiscConfig.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/LocalDiscConfigVersion.cmake"
-  DESTINATION lib/cmake/YourProjectName
+  DESTINATION lib/cmake/LocalDisc
 )
 
 # --- Output directory ---

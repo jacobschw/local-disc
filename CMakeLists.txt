@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15) # Use a reasonably modern CMake
 
-project(YourProjectName LANGUAGES CXX)
+project(LocalDisc VERSION 0.1.0 LANGUAGES CXX)
 
 # --- Global Settings ---
 set(CMAKE_CXX_STANDARD 20)              # Set C++ standard (e.g., C++20)
@@ -14,18 +14,6 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the build type" FORCE)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
     "MinSizeRel" "RelWithDebInfo")
-endif()
-
-# --- Compiler Specific Settings ---
-if(MSVC)
-  # Add common warning flags for MSVC
-  target_compile_options(local_disc_core_lib INTERFACE /W4) # INTERFACE applies to consumers if this was static
-  # For DLLs on Windows, you often want MultiThreadedDLL runtime
-  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-else()
-  # Add common warning flags for GCC/Clang
-  # We'll set these in cpp_core/CMakeLists.txt using target_compile_options
-  # for more fine-grained control per target.
 endif()
 
 # --- Include Subdirectories ---

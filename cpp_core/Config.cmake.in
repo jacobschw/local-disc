@@ -9,7 +9,7 @@ include(CMakeFindDependencyMacro)
 # find_dependency(Threads REQUIRED)
 
 # This line will include the LocalDiscNameTargets.cmake file that
-# defines the imported target LocalDiscName::your_core_lib
+# defines the imported target LocalDiscName::local_disc_lib
 include("${CMAKE_CURRENT_LIST_DIR}/LocalDiscNameTargets.cmake")
 
 # Check that the imported target exists
