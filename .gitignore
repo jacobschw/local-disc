@@ -1,7 +1,12 @@
 # data dumps
 .datadump/
 
+# build directories
 build/
+vcpkg_installed/
+
+# local dev config
+CMakeUserPresets.json
 
 # Prerequisites
 *.d

@@ -1,0 +1,8 @@
+{
+  "name": "local-disc-core-lib",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "pugixml",
+    "libpqxx"
+  ]
+}

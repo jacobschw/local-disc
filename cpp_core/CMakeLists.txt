@@ -53,8 +53,12 @@ endif()
 # --- Link Libraries (Dependencies) ---
 # Example for later when you add libpqxx (assuming you use vcpkg or find_package)
 # find_package(PostgreSQL REQUIRED)
-# find_package(libpqxx REQUIRED)
-# target_link_libraries(local_disc_core_lib PRIVATE PkgConfig::libpqxx) # Or however your package manager provides it
+find_package(libpqxx REQUIRED CONFIG)
+find_package(pugixml REQUIRED CONFIG)
+target_link_libraries(local_disc_core_lib PRIVATE 
+  pqxx
+  pugixml 
+) # Or however your package manager provides it
 
 # --- Installation ---
 # Defines where to install the library and its public headers.

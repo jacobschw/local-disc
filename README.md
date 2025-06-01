@@ -28,37 +28,42 @@ This involves two main components:
 
 ### Current Project Status
 
-**Last Updated:** \[2025-05-31]
+**Last Updated:** \[YYYY-MM-DD - *You should update this regularly, e.g., 2024-05-31*]
 
-**Overall Progress:** Initial Setup & C++ Core Foundation Established.
+**Overall Progress:** C++ Core Foundation Established, including Build System and Dependency Management.
 
 **Key Milestones Achieved:**
 
 1.  **Project Scaffolding (C++ Core):**
-    *   A cross-platform CMake build system for the core C++ shared library (`local_disc_core_lib` or `your_core_lib`) has been successfully configured.
-    *   The project structure for the C++ library, including public API headers (`api.h`) and source file organization, is in place.
-    *   Basic C-style API functions have been defined in `api.h` and stubbed out in `api.cpp` for initializing the engine, executing a placeholder query, and managing results.
-    *   The C++ shared library successfully compiles on Windows (using MSVC via VSCode and CMake Tools). Linux and macOS compatibility is planned but not yet fully tested in a CI environment.
+    *   A cross-platform CMake build system for the core C++ shared library (`local_disc_core_lib`) has been successfully configured.
+    *   The project structure includes a top-level CMake file and a `cpp_core` subdirectory for the library source code.
+    *   Public API headers (`api.h`) and basic C-style API function stubs (`api.cpp`) are in place.
+    *   The C++ shared library successfully compiles on Windows (using MSVC via VSCode with CMake Tools and Visual Studio Generator presets).
     *   The build output directory (`build/`) is correctly excluded from source control via `.gitignore`.
+
+2.  **Dependency Management (C++ Core):**
+    *   **vcpkg (manifest mode) has been integrated for C++ dependency management.**
+    *   The `vcpkg.json` and `vcpkg-configuration.json` files are located in the **project root directory** (alongside the top-level `CMakeLists.txt`) to ensure correct manifest discovery and robust automatic installation of dependencies during CMake configuration.
+    *   The system is configured to use the **vcpkg instance bundled with Visual Studio 2022**.
+    *   Dependencies such as `libpqxx` (for PostgreSQL) and `pugixml` (for XML parsing) are successfully declared in `vcpkg.json` and are automatically installed by vcpkg during the CMake configuration phase. These libraries can now be found and linked by the `cpp_core` library.
 
 **Next Immediate Steps (Short-Term Focus):**
 
 1.  **C++ Core - Database Interaction:**
-    *   Integrate the `libpqxx` C++ library for PostgreSQL interaction.
-    *   Implement the `initialize_engine` function in `api.cpp` to establish a connection to a PostgreSQL database.
+    *   Utilize the integrated `libpqxx` library to implement the `initialize_engine` function in `api.cpp` to establish and manage a connection to a PostgreSQL database.
     *   Define an initial version of the PostgreSQL database schema (`db_schema/postgres_schema.sql`) to store basic entities from Discogs (e.g., releases, artists).
 
 2.  **C++ Core - Discogs Importer (Initial Pass):**
-    *   Integrate an XML parsing library (e.g., `PugiXML`).
-    *   Begin implementation of the Discogs data dump parser, focusing on extracting and mapping core entities (e.g., releases, artists, labels) to the defined database schema.
+    *   Utilize the integrated `pugixml` library to begin implementation of the Discogs data dump parser.
+    *   Focus on extracting and mapping core entities (e.g., releases, artists, labels) to the defined database schema.
     *   Implement the `start_import` C API function to trigger the Discogs import process.
 
 3.  **Testing Framework:**
-    *   Set up a C++ unit testing framework (e.g., GoogleTest) and write initial tests for the API and database connection logic.
+    *   Set up a C++ unit testing framework (e.g., GoogleTest, also potentially managed via vcpkg) and write initial tests for the API, database connection logic, and basic parsing.
 
 **Planned Future Work (Longer-Term):**
 
-*   **C++ Core - Discogs Importer:** Develop the parser and importer for MusicBrainz JSON data dumps.
+*   **C++ Core - MusicBrainz Importer:** Develop the parser and importer for MusicBrainz JSON data dumps (e.g., using `nlohmann/json` managed via vcpkg).
 *   **C++ Core - Custom Query Language (QL):**
     *   Formalize the grammar and syntax of the custom QL.
     *   Implement the QL parser (e.g., using ANTLR or a custom parser).
